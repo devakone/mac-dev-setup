@@ -29,18 +29,20 @@ brew install wget
 
 # git
 brew install git                                                                                      # https://formulae.brew.sh/formula/git
+# github cli
+brew install gh                                                                                      # https://formulae.brew.sh/formula/gh
 # Adding git aliases (https://github.com/thomaspoignant/gitalias)
 git clone https://github.com/thomaspoignant/gitalias.git $INSTALL_FOLDER/gitalias && echo -e "[include]\n    path = $INSTALL_FOLDER/gitalias/.gitalias\n$(cat ~/.gitconfig)" > ~/.gitconfig
 
-brew install git-secrets                                                                              # git hook to check if you are pushing aws secret (https://github.com/awslabs/git-secrets)
-git secrets --register-aws --global
-git secrets --install ~/.git-templates/git-secrets
-git config --global init.templateDir ~/.git-templates/git-secrets
+# brew install git-secrets                                                                              # git hook to check if you are pushing aws secret (https://github.com/awslabs/git-secrets)
+# git secrets --register-aws --global
+# git secrets --install ~/.git-templates/git-secrets
+# git config --global init.templateDir ~/.git-templates/git-secrets
 
 # ZSH
 brew install zsh zsh-completions                                                                      # Install zsh and zsh completions
-sudo chmod -R 755 /usr/local/share/zsh
-sudo chown -R root:staff /usr/local/share/zsh
+sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions
+chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 {
   echo "if type brew &>/dev/null; then"
   echo "  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH"
@@ -81,9 +83,11 @@ brew install ctop
 # fonts (https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)
 brew tap homebrew/cask-fonts
 brew cask install font-jetbrains-mono
+brew cask install font-fira-code
 
 # Browser
 brew cask install google-chrome
+brew cask install google-chrome-canary
 brew cask install firefox
 brew cask install microsoft-edge
 
@@ -99,30 +103,67 @@ brew cask install rectangle                                                     
 # Communication
 brew cask install slack
 brew cask install whatsapp
+brew cask install telegram
+brew cask install microsoft-teams
 
 # Dev tools
 brew cask install ngrok                                                                               # tunnel localhost over internet.
 brew cask install postman                                                                             # Postman makes sending API requests simple.
 
 # IDE
-brew cask install jetbrains-toolbox
+#brew cask install jetbrains-toolbox
+brew cask install intellij-idea
 brew cask install visual-studio-code
+brew cask install android-studio
 
 # Language
+
 ## Node / Javascript
 mkdir ~/.nvm
-brew install nvm                                                                                     # choose your version of npm
-nvm install node                                                                                     # "node" is an alias for the latest version
+brew install nvm    
 {
   echo "export NVM_DIR=\"$HOME/.nvm\""
-  echo '[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm'
-  echo '[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion'
-}>>$MAC_SETUP_PROFILE
+  echo 'source $(brew --prefix nvm)/nvm.sh'
 
-## Java
+}>>.zshrc   
+exec /bin/zsh                                                                           
+nvm install node                                                                                     # "node" is an alias for the latest version
+nvm install 12
+nvm install 10
+nvm use 12
+brew install yarn
+brew uninstall node --ignore-dependencies
+mkdir /usr/local/Cellar/node
+ln -s ~/.nvm/versions/node/$(nvm current)/ /usr/local/Cellar/node
+brew link --overwrite node
+brew cleanup
+brew doctor
+# Consult https://github.com/nijicha/install_nodejs_and_yarn_homebrew for upgrade instructions
+
+# Java
 brew cask install java
+brew install jenv
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(jenv init -)"' >> ~/.zshrc
+#echo 'alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"''
+exec /bin/zsh
+echo 'jenv enable-plugin export' >> ~/.zshrc
+echo 'jenv enable-plugin maven' >> ~/.zshrc
+exec /bin/zsh
+jenv doctor
+brew cask install AdoptOpenJDK/openjdk/adoptopenjdk{8,11}
+jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+
+jenv global 11.0
+
 brew install maven
 brew install gradle
+
+
+# Tomcat
+brew install tomcat@8
+
 
 ## golang
 {
@@ -136,9 +177,17 @@ brew install go
 ## python
 echo "export PATH=\"/usr/local/opt/python/libexec/bin:\$PATH\"" >> $MAC_SETUP_PROFILE
 brew install python
-pip install --user pipenv
-pip install --upgrade setuptools
-pip install --upgrade pip
+if ! hash pip
+then
+  pip3 install --user pipenv
+  pip3 install --upgrade setuptools
+  pip3 install --upgrade pip
+else
+  pip install --user pipenv
+  pip install --upgrade setuptools
+  pip install --upgrade pip
+fi
+
 brew install pyenv
 # shellcheck disable=SC2016
 echo 'eval "$(pyenv init -)"' >> $MAC_SETUP_PROFILE
@@ -154,6 +203,9 @@ brew install libpq                  # postgre command line
 brew link --force libpq
 # shellcheck disable=SC2016
 echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> $MAC_SETUP_PROFILE
+brew install mysql
+brew services start mysql
+brew cask install mysqlworkbench
 
 # SFTP
 brew cask install cyberduck
@@ -167,7 +219,30 @@ brew install docker-machine-completion
 
 # AWS command line
 brew install awscli # Official command line
-pip3 install saws    # A supercharged AWS command line interface (CLI).
+pip3 install saws    # A superchaip install --upgrade setuptools
+
+# Google Drive and Dropbox
+brew cask install google-backup-and-sync
+brew cask install dropbox
+
+# TunnelBlick
+brew cask install tunnelblick
+
+#Zoom
+brew cask install zoomus
+
+# Keybase
+brew cask install keybase
+
+#Genymotion
+brew cask install genymotion
+
+# Figma
+brew cask install figma
+
+# Office
+brew cask install microsoft-office
+
 
 # reload profile files.
 {
