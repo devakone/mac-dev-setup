@@ -36,6 +36,9 @@ git clone https://github.com/thomaspoignant/gitalias.git $INSTALL_FOLDER/gitalia
 
 #Interactive rebase tool
 brew install interactive-rebase-tool
+# Git Delta
+brew install git-delta
+
 # brew install git-secrets                                                                              # git hook to check if you are pushing aws secret (https://github.com/awslabs/git-secrets)
 # git secrets --register-aws --global
 # git secrets --install ~/.git-templates/git-secrets
