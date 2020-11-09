@@ -85,6 +85,9 @@ echo '. /usr/local/etc/profile.d/z.sh' >> $MAC_SETUP_PROFILE
 
 brew install ctop
 
+# Serverless
+brew install serverless
+
 # fonts (https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)
 brew tap homebrew/cask-fonts
 brew cask install font-jetbrains-mono
