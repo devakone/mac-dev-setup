@@ -58,7 +58,7 @@ chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"# Install oh-my-zsh on top of zsh to getting additional functionality
 # Terminal replacement https://www.iterm2.com
-brew cask install iterm2
+brew install --cask iterm2
 # Pimp command line
 brew install micro                                                                                    # replacement for nano/vi
 brew install lsd                                                                                      # replacement for ls
@@ -90,39 +90,39 @@ brew install serverless
 
 # fonts (https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)
 brew tap homebrew/cask-fonts
-brew cask install font-jetbrains-mono
-brew cask install font-fira-code
+brew install --cask font-jetbrains-mono
+brew install --cask font-fira-code
 
 # Browser
-brew cask install google-chrome
-brew cask install google-chrome-canary
-brew cask install firefox
-brew cask install microsoft-edge
+brew install --cask google-chrome
+brew install --cask google-chrome-canary
+brew install --cask firefox
+brew install --cask microsoft-edge
 
 # Music / Video
-brew cask install spotify
-brew cask install vlc
+brew install --cask spotify
+brew install --cask vlc
 
 # Productivity
-brew cask install evernote                                                                            # cloud note
-brew cask install kap                                                                                 # video screenshot
-brew cask install rectangle                                                                           # manage windows
+brew install --cask evernote                                                                            # cloud note
+brew install --cask kap                                                                                 # video screenshot
+brew install --cask rectangle                                                                           # manage windows
 
 # Communication
-brew cask install slack
-brew cask install whatsapp
-brew cask install telegram
-brew cask install microsoft-teams
+brew install --cask slack
+brew install --cask whatsapp
+brew install --cask telegram
+brew install --cask microsoft-teams
 
 # Dev tools
-brew cask install ngrok                                                                               # tunnel localhost over internet.
-brew cask install postman                                                                             # Postman makes sending API requests simple.
+brew install --cask ngrok                                                                               # tunnel localhost over internet.
+brew install --cask postman                                                                             # Postman makes sending API requests simple.
 
 # IDE
-#brew cask install jetbrains-toolbox
-brew cask install intellij-idea
-brew cask install visual-studio-code
-brew cask install android-studio
+#brew install --cask jetbrains-toolbox
+brew install --cask intellij-idea
+brew install --cask visual-studio-code
+brew install --cask android-studio
 
 # Language
 
@@ -149,7 +149,7 @@ brew doctor
 # Consult https://github.com/nijicha/install_nodejs_and_yarn_homebrew for upgrade instructions
 
 # Java
-brew cask install java
+brew install --cask java
 brew install jenv
 echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(jenv init -)"' >> ~/.zshrc
@@ -159,7 +159,7 @@ echo 'jenv enable-plugin export' >> ~/.zshrc
 echo 'jenv enable-plugin maven' >> ~/.zshrc
 exec /bin/zsh
 jenv doctor
-brew cask install AdoptOpenJDK/openjdk/adoptopenjdk{8,11}
+brew install --cask AdoptOpenJDK/openjdk/adoptopenjdk{8,11}
 jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 
@@ -206,20 +206,20 @@ brew install terraform
 terraform -v
 
 # Databases
-brew cask install dbeaver-community # db viewer
+brew install --cask dbeaver-community # db viewer
 brew install libpq                  # postgre command line
 brew link --force libpq
 # shellcheck disable=SC2016
 echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> $MAC_SETUP_PROFILE
 brew install mysql
 brew services start mysql
-brew cask install mysqlworkbench
+brew install --cask mysqlworkbench
 
 # SFTP
-brew cask install cyberduck
+brew install --cask cyberduck
 
 # Docker
-brew cask install docker
+brew install --cask docker
 brew install bash-completion
 brew install docker-completion
 brew install docker-compose-completion
@@ -230,26 +230,29 @@ brew install awscli # Official command line
 pip3 install saws    # A superchaip install --upgrade setuptools
 
 # Google Drive and Dropbox
-brew cask install google-backup-and-sync
-brew cask install dropbox
+brew install --cask google-backup-and-sync
+brew install --cask dropbox
 
 # TunnelBlick
-brew cask install tunnelblick
+brew install --cask tunnelblick
 
 #Zoom
-brew cask install zoomus
+brew install --cask zoomus
 
 # Keybase
-brew cask install keybase
+brew install --cask keybase
 
 #Genymotion
-brew cask install genymotion
+brew install --cask genymotion
 
 # Figma
-brew cask install figma
+brew install --cask figma
 
 # Office
-brew cask install microsoft-office
+brew install --cask microsoft-office
+
+# Chromedriver
+brew install --cask chromedriver
 
 
 # reload profile files.
