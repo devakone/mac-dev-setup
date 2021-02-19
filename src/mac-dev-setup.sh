@@ -254,6 +254,9 @@ brew install --cask microsoft-office
 # Chromedriver
 brew install --cask chromedriver
 
+# Certificate installer
+brew install mkcert
+
 
 # reload profile files.
 {
