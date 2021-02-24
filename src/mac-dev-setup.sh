@@ -257,6 +257,9 @@ brew install --cask chromedriver
 # Certificate installer
 brew install mkcert
 
+# ngrok
+brew install --cask ngrok
+
 
 # reload profile files.
 {
